@@ -28,6 +28,8 @@
     <spring.boot.maven.plugin.version>2.5.7</spring.boot.maven.plugin.version>
     <spring-boot-dependencies-version>2.5.7</spring-boot-dependencies-version>
     <spring.cloud-version>2020.0.3</spring.cloud-version>
+    <jib.plugin.version>3.2.1</jib.plugin.version>
+    <image>chanet93/${project.artifactId}:${project.version}</image>
   </properties>
 
   <dependencyManagement>
@@ -59,7 +61,7 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
-      <version>2.7.0</version>
+      <version>2.7.2</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.cloud</groupId>
@@ -79,6 +81,39 @@
              <execution>
                <goals>
                  <goal>repackage</goal>
+               </goals>
+             </execution>
+           </executions>
+         </plugin>
+         <plugin>
+         <groupId>com.google.cloud.tools</groupId>
+         <artifactId>jib-maven-plugin</artifactId>
+         <version>3.2.1</version>
+           <configuration>
+             <from>
+               <image>eclipse-temurin:18</image>
+               <platforms>
+                 <platform>
+                   <architecture>arm64</architecture>
+                   <os>linux</os>
+                 </platform>
+                 <platform>
+                   <architecture>amd64</architecture>
+                   <os>linux</os>
+                 </platform>
+               </platforms>
+             </from>
+             <to>
+               <tags>
+                 <tag>latest</tag>
+               </tags>
+             </to>
+           </configuration>
+           <executions>
+             <execution>
+               <phase>package</phase>
+               <goals>
+                 <goal>build</goal>
                </goals>
              </execution>
            </executions>

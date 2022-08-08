@@ -16,5 +16,6 @@
         <module name="customer" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="18" />
   </component>
 </project>
