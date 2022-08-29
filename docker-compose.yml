@@ -43,29 +43,29 @@ services:
       - "15672:15672"
     networks:
       - spring
-  eureka-server:
-    image: chanet93/eureka-server:latest
-    container_name: eureka-server
-    ports:
-      - "8761:8761"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    networks:
-      - spring
-    depends_on:
-      - zipkin
-  apigw:
-    image: chanet93/apigw:latest
-    container_name: apigw
-    ports:
-      - "8083:8083"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    networks:
-      - spring
-    depends_on:
-      - zipkin
-      - eureka-server
+#  eureka-server:
+#    image: chanet93/eureka-server:latest
+#    container_name: eureka-server
+#    ports:
+#      - "8761:8761"
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#    networks:
+#      - spring
+#    depends_on:
+#      - zipkin
+#  apigw:
+#    image: chanet93/apigw:latest
+#    container_name: apigw
+#    ports:
+#      - "8083:8083"
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#    networks:
+#      - spring
+#    depends_on:
+#      - zipkin
+#      - eureka-server
   customer:
     image: chanet93/customer:latest
     container_name: customer
@@ -80,7 +80,6 @@ services:
       - postgres
       - zipkin
       - rabbitmq
-      - eureka-server
   fraud:
     image: chanet93/fraud:latest
     container_name: fraud
@@ -94,7 +93,6 @@ services:
     depends_on:
       - postgres
       - zipkin
-      - eureka-server
   notification:
     image: chanet93/notification:latest
     container_name: notification
@@ -109,7 +107,6 @@ services:
       - postgres
       - zipkin
       - rabbitmq
-      - eureka-server
 
 networks:
   postgres:
