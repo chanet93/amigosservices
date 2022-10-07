@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer
+  labels:
+    app: customer
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: customer
+      labels:
+        app: customer
+    spec:
+      containers:
+        - name: customer
+          image: amigoscode/customer:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: kube
+            - name: SPRING_DATASOURCE_USERNAME
+              value: linpostgres
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://lin-9879-2332-pgsql-primary.servers.linodedb.net:5432/customer
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: .zvwIzeRDh4F2NIt
+
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: customer
