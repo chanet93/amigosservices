@@ -15,12 +15,16 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
     private final ConnectionFactory connectionFactory;
+
+    //to be able to publish msg to the queue(object to json)
     @Bean
     public AmqpTemplate amqpTemplate(){
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMessageConverter(jacksonConverter());
         return rabbitTemplate;
+
     }
+    //in order to listen msg from the queue(deserialize from json to object)
     @Bean
     public SimpleRabbitListenerContainerFactory simpleRabbitListenerContainerFactory(){
         SimpleRabbitListenerContainerFactory factory= new SimpleRabbitListenerContainerFactory();
