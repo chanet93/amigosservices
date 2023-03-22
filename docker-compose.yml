@@ -66,53 +66,53 @@ services:
 #    depends_on:
 #      - zipkin
 #      - eureka-server
-  customer:
-    image: chanet93/customer:latest
-    container_name: customer
-    ports:
-      - "8080:8080"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    networks:
-      - spring
-      - postgres
-    depends_on:
-      - postgres
-      - zipkin
-      - rabbitmq
-  fraud:
-    image: chanet93/fraud:latest
-    container_name: fraud
-    ports:
-      - "8081:8081"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    networks:
-      - spring
-      - postgres
-    depends_on:
-      - postgres
-      - zipkin
-  notification:
-    image: chanet93/notification:latest
-    container_name: notification
-    ports:
-      - "8082:8082"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    networks:
-      - spring
-      - postgres
-    depends_on:
-      - postgres
-      - zipkin
-      - rabbitmq
+#  customer:
+#    image: chanet93/customer:latest
+#    container_name: customer
+#    ports:
+#      - "8080:8080"
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#    networks:
+#      - spring
+#      - postgres
+#    depends_on:
+#      - postgres
+#      - zipkin
+#      - rabbitmq
+#  fraud:
+#    image: chanet93/fraud:latest
+#    container_name: fraud
+#    ports:
+#      - "8081:8081"
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#    networks:
+#      - spring
+#      - postgres
+#    depends_on:
+#      - postgres
+#      - zipkin
+#  notification:
+#    image: chanet93/notification:latest
+#    container_name: notification
+#    ports:
+#      - "8082:8082"
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#    networks:
+#      - spring
+#      - postgres
+#    depends_on:
+#      - postgres
+#      - zipkin
+#      - rabbitmq
 
 networks:
   postgres:
     driver: bridge
-  spring:
-    driver: bridge
+#  spring:
+#    driver: bridge
 
 volumes:
   postgres:
